@@ -31,6 +31,10 @@ const mainItems = [
   { title: "Leaderboard", url: "/leaderboard", icon: Trophy },
 ];
 
+const settingsItems = [
+  { title: "Settings", url: "/settings", icon: Settings },
+];
+
 export function AppSidebar() {
   const { state } = useSidebar();
   const location = useLocation();
@@ -116,6 +120,34 @@ export function AppSidebar() {
             </SidebarGroupContent>
           </SidebarGroup>
         )}
+
+        {/* Settings Section */}
+        <SidebarGroup>
+          <SidebarGroupLabel className={isCollapsed ? "sr-only" : ""}>
+            Settings
+          </SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {settingsItems.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild>
+                    <NavLink 
+                      to={item.url} 
+                      className={getNavCls}
+                    >
+                      {({ isActive }) => (
+                        <>
+                          <item.icon className={`h-4 w-4 ${isCollapsed ? "" : "mr-3"}`} />
+                          {!isCollapsed && <span>{item.title}</span>}
+                        </>
+                      )}
+                    </NavLink>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
 
         {/* Household Info */}
         {!isCollapsed && (
