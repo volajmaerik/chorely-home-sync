@@ -141,12 +141,12 @@ const Index = () => {
         <Card className="relative overflow-hidden hover-scale">
           <CardContent className="p-4 sm:p-6">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                <Target className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-success/10 rounded-lg flex items-center justify-center">
+                <Target className="w-5 h-5 sm:w-6 sm:h-6 text-success" />
               </div>
               <div>
                 <p className="text-xs sm:text-sm text-muted-foreground">Available</p>
-                <p className="text-lg sm:text-2xl font-bold text-green-600">{availableChores.length}</p>
+                <p className="text-lg sm:text-2xl font-bold text-success">{availableChores.length}</p>
                 <p className="text-xs text-muted-foreground">chores</p>
               </div>
             </div>
@@ -156,12 +156,12 @@ const Index = () => {
         <Card className="relative overflow-hidden hover-scale">
           <CardContent className="p-4 sm:p-6">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                <CheckSquare className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-info/10 rounded-lg flex items-center justify-center">
+                <CheckSquare className="w-5 h-5 sm:w-6 sm:h-6 text-info" />
               </div>
               <div>
                 <p className="text-xs sm:text-sm text-muted-foreground">In Progress</p>
-                <p className="text-lg sm:text-2xl font-bold text-blue-600">{myChores.length}</p>
+                <p className="text-lg sm:text-2xl font-bold text-info">{myChores.length}</p>
                 <p className="text-xs text-muted-foreground">my chores</p>
               </div>
             </div>
@@ -171,12 +171,12 @@ const Index = () => {
         <Card className="relative overflow-hidden hover-scale">
           <CardContent className="p-4 sm:p-6">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600" />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-secondary/10 rounded-lg flex items-center justify-center">
+                <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-secondary" />
               </div>
               <div>
                 <p className="text-xs sm:text-sm text-muted-foreground">Season Ends</p>
-                <p className="text-lg sm:text-2xl font-bold text-purple-600">{daysLeft || '—'}</p>
+                <p className="text-lg sm:text-2xl font-bold text-secondary">{daysLeft || '—'}</p>
                 <p className="text-xs text-muted-foreground">days left</p>
               </div>
             </div>
@@ -192,24 +192,24 @@ const Index = () => {
       {/* Admin Action Prompts */}
       {isAdmin && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Create New Chores Prompt */}
-          <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 border-blue-200 dark:border-blue-800 hover-scale">
+          {/* Keep the House Fresh Prompt */}
+          <Card className="bg-gradient-to-br from-primary/10 to-secondary/10 border-primary/20 hover-scale">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-blue-700 dark:text-blue-300">
+              <CardTitle className="flex items-center gap-2 text-primary">
                 <Sparkles className="h-5 w-5" />
                 Keep the House Fresh! 
               </CardTitle>
-              <CardDescription className="text-blue-600 dark:text-blue-400">
+              <CardDescription className="text-muted-foreground">
                 Add new chores to keep everyone engaged and the house sparkling clean.
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                <p className="text-sm text-blue-700 dark:text-blue-300">
+                <p className="text-sm text-muted-foreground">
                   💡 <strong>Pro tip:</strong> Regular new chores = active roommates!
                 </p>
                 <Link to="/admin">
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+                  <Button className="w-full">
                     <Plus className="h-4 w-4 mr-2" />
                     Add New Chores
                   </Button>
@@ -220,13 +220,13 @@ const Index = () => {
 
           {/* Create New Season Prompt */}
           {(!currentSeason || daysLeft < 7) && (
-            <Card className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/20 border-purple-200 dark:border-purple-800 hover-scale">
+            <Card className="bg-gradient-to-br from-secondary/10 to-accent/10 border-secondary/20 hover-scale">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-purple-700 dark:text-purple-300">
+                <CardTitle className="flex items-center gap-2 text-secondary">
                   <Gift className="h-5 w-5" />
                   {currentSeason ? 'Season Ending Soon!' : 'Start a New Season!'}
                 </CardTitle>
-                <CardDescription className="text-purple-600 dark:text-purple-400">
+                <CardDescription className="text-muted-foreground">
                   {currentSeason 
                     ? 'Keep the competition going with a fresh season and new prizes!'
                     : 'Launch a competitive season with prizes to motivate your household!'
@@ -235,12 +235,12 @@ const Index = () => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  <p className="text-sm text-purple-700 dark:text-purple-300">
+                  <p className="text-sm text-muted-foreground">
                     🏆 <strong>Boost engagement:</strong> Seasons with prizes = 3x more participation!
                   </p>
                   <Dialog open={showSeasonDialog} onOpenChange={setShowSeasonDialog}>
                     <DialogTrigger asChild>
-                      <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white">
+                      <Button variant="secondary" className="w-full">
                         <CalendarIcon className="h-4 w-4 mr-2" />
                         Create New Season
                       </Button>

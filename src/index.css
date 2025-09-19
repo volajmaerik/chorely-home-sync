@@ -287,4 +287,25 @@ All colors MUST be HSL.
   .sidebar-transition {
     transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
+
+  /* Page transitions */
+  .page-enter {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  .page-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.3s ease-out;
+  }
+
+  /* Theme variables for sidebar consistency */
+  .sidebar-text {
+    color: hsl(var(--sidebar-foreground));
+  }
+
+  .sidebar-text-active {
+    color: hsl(var(--sidebar-primary-foreground));
+  }
 }

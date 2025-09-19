@@ -16,6 +16,7 @@ import { toast } from '@/hooks/use-toast';
 import { Camera, Key, Shield, Smartphone, User, Users, Instagram, MessageCircle, Mail, Eye, EyeOff } from 'lucide-react';
 import { OTPSetup } from '@/components/auth/OTPSetup';
 import { PasskeySetup } from '@/components/auth/PasskeySetup';
+import { HouseholdSwitcher } from '@/components/HouseholdSwitcher';
 
 const Settings = () => {
   const { user, signOut } = useAuth();
@@ -449,14 +450,117 @@ const Settings = () => {
             <Badge>Active</Badge>
           </div>
           
+          <HouseholdSwitcher />
+          
           <div className="flex flex-col sm:flex-row gap-2">
-            <Button variant="outline" className="flex-1">
-              <Users className="h-4 w-4 mr-2" />
-              Invite Members
-            </Button>
-            <Button variant="outline" className="flex-1">
-              Switch Household
-            </Button>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant="outline" className="flex-1">
+                  <Users className="h-4 w-4 mr-2" />
+                  Invite Members
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Invite Members</DialogTitle>
+                  <DialogDescription>
+                    Share this invite code with new household members
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2">
+                    <Input
+                      value={household?.invite_code || ''}
+                      readOnly
+                      className="font-mono text-lg"
+                    />
+                    <Button
+                      variant="outline"
+                      onClick={() => {
+                        if (household?.invite_code) {
+                          navigator.clipboard.writeText(household.invite_code);
+                          toast({
+                            title: 'Invite code copied!',
+                            description: 'Share this code with new members.'
+                          });
+                        }
+                      }}
+                    >
+                      Copy
+                    </Button>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    New members can join by entering this code during signup or in their settings.
+                  </p>
+                </div>
+              </DialogContent>
+            </Dialog>
+            
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant="outline" className="flex-1">
+                  Join Household
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Join Another Household</DialogTitle>
+                  <DialogDescription>
+                    Enter an invite code to join another household
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="space-y-4">
+                  <Input
+                    placeholder="Enter invite code"
+                    className="font-mono text-lg"
+                    id="join-code"
+                  />
+                  <Button 
+                    className="w-full" 
+                    onClick={async () => {
+                      const input = document.getElementById('join-code') as HTMLInputElement;
+                      const code = input.value.trim().toUpperCase();
+                      if (!code) return;
+                      
+                      try {
+                        const { data, error } = await supabase
+                          .from('households')
+                          .select('id')
+                          .eq('invite_code', code)
+                          .single();
+                        
+                        if (error || !data) throw new Error('Invalid invite code');
+                        
+                        // Create membership
+                        const { error: membershipError } = await supabase
+                          .from('household_memberships')
+                          .insert({
+                            user_id: user!.id,
+                            household_id: data.id,
+                            role: 'member'
+                          });
+                        
+                        if (membershipError) throw membershipError;
+                        
+                        toast({
+                          title: 'Successfully joined household!',
+                          description: 'You can now switch between your households.'
+                        });
+                        input.value = '';
+                      } catch (error: any) {
+                        toast({
+                          variant: 'destructive',
+                          title: 'Failed to join household',
+                          description: error.message
+                        });
+                      }
+                    }}
+                  >
+                    Join Household
+                  </Button>
+                </div>
+              </DialogContent>
+            </Dialog>
           </div>
         </CardContent>
       </Card>

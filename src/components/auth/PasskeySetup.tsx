@@ -1,11 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Key, Fingerprint, Smartphone, Laptop } from 'lucide-react';
+import { Key, Smartphone, Check, X, Trash2, Plus } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
+
+interface Passkey {
+  id: string;
+  name: string;
+  createdAt: string;
+  lastUsed?: string;
+}
 
 interface PasskeySetupProps {
   isOpen: boolean;
@@ -13,189 +21,227 @@ interface PasskeySetupProps {
   onComplete: () => void;
 }
 
-export function PasskeySetup({ isOpen, onClose, onComplete }: PasskeySetupProps) {
-  const [step, setStep] = useState<'intro' | 'create' | 'verify'>('intro');
-  const [passkeyName, setPasskeyName] = useState('');
+export const PasskeySetup = ({ isOpen, onClose, onComplete }: PasskeySetupProps) => {
+  const [step, setStep] = useState<'list' | 'setup' | 'verify'>('list');
+  const [passkeys, setPasskeys] = useState<Passkey[]>([]);
+  const [newPasskeyName, setNewPasskeyName] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const createPasskey = async () => {
-    if (!passkeyName.trim()) {
+  // Load existing passkeys
+  useEffect(() => {
+    if (isOpen) {
+      loadPasskeys();
+    }
+  }, [isOpen]);
+
+  const loadPasskeys = () => {
+    // In a real implementation, this would fetch from your backend
+    const savedPasskeys = JSON.parse(localStorage.getItem('userPasskeys') || '[]');
+    setPasskeys(savedPasskeys);
+  };
+
+  const generatePasskey = () => {
+    if (!newPasskeyName.trim()) {
       toast({
         variant: 'destructive',
-        title: 'Name required',
-        description: 'Please enter a name for your passkey.',
+        title: 'Please enter a name',
+        description: 'Give your passkey a memorable name.'
       });
       return;
     }
 
-    setLoading(true);
-    try {
-      // Mock passkey creation - in real app, use WebAuthn API
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // Simulate browser's passkey creation dialog
-      const userConfirmed = window.confirm('Would you like to create a passkey using your device\'s biometric authentication?');
-      
-      if (userConfirmed) {
-        setStep('verify');
-        toast({
-          title: 'Passkey created successfully!',
-          description: `Your passkey "${passkeyName}" has been registered.`,
-        });
-      } else {
-        throw new Error('Passkey creation was cancelled');
-      }
-    } catch (error) {
-      toast({
-        variant: 'destructive',
-        title: 'Failed to create passkey',
-        description: 'Please try again or check if your device supports passkeys.',
-      });
-    } finally {
-      setLoading(false);
-    }
+    setStep('verify');
   };
 
-  const completeSetup = () => {
-    onComplete();
-    onClose();
+  const handleSetup = async () => {
+    setLoading(true);
+    
+    // Simulate passkey registration
+    setTimeout(() => {
+      const newPasskey: Passkey = {
+        id: Math.random().toString(36).substr(2, 9),
+        name: newPasskeyName,
+        createdAt: new Date().toISOString(),
+      };
+
+      const updatedPasskeys = [...passkeys, newPasskey];
+      setPasskeys(updatedPasskeys);
+      localStorage.setItem('userPasskeys', JSON.stringify(updatedPasskeys));
+
+      toast({
+        title: 'Passkey registered!',
+        description: 'Your biometric authentication is now active.',
+      });
+      
+      setLoading(false);
+      setStep('list');
+      setNewPasskeyName('');
+      onComplete();
+    }, 2000);
+  };
+
+  const removePasskey = (id: string) => {
+    const updatedPasskeys = passkeys.filter(pk => pk.id !== id);
+    setPasskeys(updatedPasskeys);
+    localStorage.setItem('userPasskeys', JSON.stringify(updatedPasskeys));
+    
     toast({
-      title: 'Passkey authentication enabled!',
-      description: 'You can now sign in using your passkey.',
+      title: 'Passkey removed',
+      description: 'The passkey has been deleted from your account.'
     });
   };
 
+  const handleClose = () => {
+    setStep('list');
+    setNewPasskeyName('');
+    onClose();
+  };
+
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md">
+    <Dialog open={isOpen} onOpenChange={handleClose}>
+      <DialogContent className="sm:max-w-lg">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Key className="h-5 w-5" />
-            Set up Passkey Authentication
+            Manage Passkeys
           </DialogTitle>
           <DialogDescription>
-            {step === 'intro' && 'Use your device\'s biometric authentication or security key to sign in.'}
-            {step === 'create' && 'Give your passkey a name and create it using your device\'s authentication.'}
-            {step === 'verify' && 'Your passkey has been created successfully!'}
+            {step === 'list' 
+              ? 'View and manage your registered passkeys.'
+              : step === 'setup'
+              ? 'Set up a new passkey for biometric authentication.'
+              : 'Complete the passkey registration process.'
+            }
           </DialogDescription>
         </DialogHeader>
 
-        {step === 'intro' && (
+        {step === 'list' ? (
           <div className="space-y-4">
-            <div className="text-center space-y-4">
-              <div className="flex justify-center gap-4">
-                <div className="flex flex-col items-center space-y-2">
-                  <div className="p-3 bg-primary/10 rounded-full">
-                    <Fingerprint className="h-6 w-6 text-primary" />
-                  </div>
-                  <p className="text-xs text-center">Biometric</p>
+            {passkeys.length === 0 ? (
+              <div className="text-center py-6">
+                <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Key className="w-8 h-8 text-muted-foreground" />
                 </div>
-                <div className="flex flex-col items-center space-y-2">
-                  <div className="p-3 bg-primary/10 rounded-full">
-                    <Smartphone className="h-6 w-6 text-primary" />
-                  </div>
-                  <p className="text-xs text-center">Phone</p>
-                </div>
-                <div className="flex flex-col items-center space-y-2">
-                  <div className="p-3 bg-primary/10 rounded-full">
-                    <Laptop className="h-6 w-6 text-primary" />
-                  </div>
-                  <p className="text-xs text-center">Computer</p>
-                </div>
+                <h3 className="text-lg font-medium mb-2">No Passkeys Configured</h3>
+                <p className="text-sm text-muted-foreground">
+                  Set up your first passkey for secure biometric authentication.
+                </p>
               </div>
-              
-              <div className="space-y-2">
-                <h4 className="font-medium">What are passkeys?</h4>
-                <ul className="text-sm text-muted-foreground space-y-1">
-                  <li>• More secure than passwords</li>
-                  <li>• Use your device's built-in authentication</li>
-                  <li>• No need to remember complex passwords</li>
-                  <li>• Resistant to phishing attacks</li>
-                </ul>
+            ) : (
+              <div className="space-y-3">
+                <h4 className="font-medium">Your Passkeys</h4>
+                {passkeys.map((passkey) => (
+                  <Card key={passkey.id}>
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                            <Smartphone className="w-5 h-5 text-primary" />
+                          </div>
+                          <div>
+                            <p className="font-medium">{passkey.name}</p>
+                            <p className="text-sm text-muted-foreground">
+                              Created {new Date(passkey.createdAt).toLocaleDateString()}
+                            </p>
+                            {passkey.lastUsed && (
+                              <p className="text-xs text-muted-foreground">
+                                Last used {new Date(passkey.lastUsed).toLocaleDateString()}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                        <Button 
+                          variant="ghost" 
+                          size="sm"
+                          onClick={() => removePasskey(passkey.id)}
+                          className="text-destructive hover:text-destructive"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
               </div>
-            </div>
+            )}
           </div>
-        )}
-
-        {step === 'create' && (
+        ) : step === 'setup' ? (
           <div className="space-y-4">
+            <div className="text-center py-4">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Smartphone className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-lg font-medium mb-2">Set Up New Passkey</h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Give your passkey a name and you'll be prompted to use your device's biometric authentication.
+              </p>
+            </div>
+            
             <div className="space-y-2">
               <Label htmlFor="passkey-name">Passkey Name</Label>
               <Input
                 id="passkey-name"
-                placeholder="e.g., My iPhone, Work Laptop"
-                value={passkeyName}
-                onChange={(e) => setPasskeyName(e.target.value)}
+                placeholder="e.g., iPhone Touch ID, Windows Hello"
+                value={newPasskeyName}
+                onChange={(e) => setNewPasskeyName(e.target.value)}
               />
-              <p className="text-xs text-muted-foreground">
-                Give your passkey a memorable name to identify this device
-              </p>
             </div>
-            
-            <div className="p-3 bg-muted rounded-lg">
-              <p className="text-sm">
-                When you click "Create Passkey", your browser will ask you to authenticate using:
-              </p>
-              <ul className="text-sm mt-2 space-y-1">
-                <li>• Face ID, Touch ID, or Windows Hello</li>
-                <li>• Your device PIN or password</li>
-                <li>• A security key (if available)</li>
+
+            <div className="bg-muted/50 rounded-lg p-4">
+              <h4 className="font-medium mb-2">Benefits of Passkeys</h4>
+              <ul className="text-sm text-muted-foreground space-y-1">
+                <li className="flex items-center gap-2">
+                  <Check className="w-4 h-4 text-success" />
+                  More secure than passwords
+                </li>
+                <li className="flex items-center gap-2">
+                  <Check className="w-4 h-4 text-success" />
+                  Faster sign-in experience
+                </li>
+                <li className="flex items-center gap-2">
+                  <Check className="w-4 h-4 text-success" />
+                  Works across all your devices
+                </li>
               </ul>
             </div>
           </div>
-        )}
-
-        {step === 'verify' && (
+        ) : (
           <div className="space-y-4">
-            <div className="text-center space-y-4">
-              <div className="flex justify-center">
-                <div className="p-4 bg-success/10 rounded-full">
-                  <Fingerprint className="h-8 w-8 text-success" />
-                </div>
+            <div className="text-center py-4">
+              <div className="w-16 h-16 bg-success/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Check className="w-8 h-8 text-success" />
               </div>
-              
-              <div className="space-y-2">
-                <h4 className="font-medium text-success">Passkey Created Successfully!</h4>
-                <p className="text-sm text-muted-foreground">
-                  Your passkey "{passkeyName}" has been registered and is ready to use.
-                </p>
-              </div>
-              
-              <Badge variant="outline" className="bg-success/10 border-success/20 text-success">
-                Authentication Enabled
-              </Badge>
+              <h3 className="text-lg font-medium mb-2">Registering Passkey</h3>
+              <p className="text-sm text-muted-foreground">
+                Please complete the biometric authentication on your device.
+              </p>
             </div>
           </div>
         )}
 
         <DialogFooter>
-          {step === 'create' && (
-            <Button variant="outline" onClick={() => setStep('intro')}>
-              Back
+          <Button variant="outline" onClick={handleClose}>
+            {step === 'list' ? 'Close' : 'Cancel'}
+          </Button>
+          {step === 'list' && (
+            <Button onClick={() => setStep('setup')}>
+              <Plus className="w-4 h-4 mr-2" />
+              Add Passkey
             </Button>
           )}
-          <div className="flex gap-2">
-            <Button variant="outline" onClick={onClose}>
-              {step === 'verify' ? 'Close' : 'Cancel'}
+          {step === 'setup' && (
+            <Button onClick={generatePasskey}>
+              <Key className="w-4 h-4 mr-2" />
+              Create Passkey
             </Button>
-            {step === 'intro' && (
-              <Button onClick={() => setStep('create')}>
-                Get Started
-              </Button>
-            )}
-            {step === 'create' && (
-              <Button onClick={createPasskey} disabled={loading || !passkeyName.trim()}>
-                {loading ? 'Creating...' : 'Create Passkey'}
-              </Button>
-            )}
-            {step === 'verify' && (
-              <Button onClick={completeSetup}>
-                Complete Setup
-              </Button>
-            )}
-          </div>
+          )}
+          {step === 'verify' && (
+            <Button onClick={handleSetup} disabled={loading}>
+              {loading ? 'Registering...' : 'Complete Setup'}
+            </Button>
+          )}
         </DialogFooter>
       </DialogContent>
     </Dialog>
   );
-}
+};

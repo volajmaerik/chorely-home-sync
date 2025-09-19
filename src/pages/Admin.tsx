@@ -256,13 +256,62 @@ const Admin = () => {
           {/* Seasons Tab */}
           <TabsContent value="seasons">
             <div className="space-y-6">
-              {/* Current Season */}
+          {/* Current Season */}
               <Card>
                 <CardHeader>
-                  <CardTitle>Current Season</CardTitle>
-                  <CardDescription>
-                    Manage leaderboard seasons and competition settings
-                  </CardDescription>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <CardTitle>Current Season</CardTitle>
+                      <CardDescription>
+                        Manage leaderboard seasons and competition settings
+                      </CardDescription>
+                    </div>
+                    {currentSeason && (
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <Button variant="outline" size="sm">
+                            <Settings className="h-4 w-4 mr-2" />
+                            Edit
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent>
+                          <DialogHeader>
+                            <DialogTitle>Edit Current Season</DialogTitle>
+                            <DialogDescription>
+                              Modify the current season settings
+                            </DialogDescription>
+                          </DialogHeader>
+                          <form className="space-y-4">
+                            <div className="space-y-2">
+                              <Label htmlFor="edit-end-date">End Date</Label>
+                              <Input
+                                id="edit-end-date"
+                                type="date"
+                                defaultValue={currentSeason.end_date.split('T')[0]}
+                              />
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="edit-prize">Prize Pool</Label>
+                              <Textarea
+                                id="edit-prize"
+                                defaultValue={currentSeason.prize_pool || ''}
+                                placeholder="e.g., Winner gets to choose next week's dinner!"
+                                rows={3}
+                              />
+                            </div>
+                            <DialogFooter>
+                              <Button type="button" variant="outline">
+                                Cancel
+                              </Button>
+                              <Button type="submit">
+                                Update Season
+                              </Button>
+                            </DialogFooter>
+                          </form>
+                        </DialogContent>
+                      </Dialog>
+                    )}
+                  </div>
                 </CardHeader>
                 <CardContent>
                   {currentSeason ? (
