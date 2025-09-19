@@ -31,14 +31,14 @@ export const useHousehold = () => {
     if (!user) return;
 
     try {
-      // Get user's profile to find household
+      // Get user's profile to find current household
       const { data: profile } = await supabase
         .from('profiles')
-        .select('household_id')
+        .select('current_household_id')
         .eq('user_id', user.id)
         .single();
 
-      if (!profile?.household_id) {
+      if (!profile?.current_household_id) {
         setLoading(false);
         return;
       }
@@ -47,18 +47,24 @@ export const useHousehold = () => {
       const { data: householdData } = await supabase
         .from('households')
         .select('*')
-        .eq('id', profile.household_id)
+        .eq('id', profile.current_household_id)
         .single();
 
       if (householdData) {
         setHousehold(householdData);
         setIsAdmin(householdData.admin_id === user.id);
 
-        // Get household members
+        // Get household members from profiles table directly
         const { data: membersData } = await supabase
           .from('profiles')
           .select('id, user_id, username, display_name, profile_image_url')
-          .eq('household_id', profile.household_id);
+          .in('user_id', 
+            await supabase
+              .from('household_memberships')
+              .select('user_id')
+              .eq('household_id', profile.current_household_id)
+              .then(({ data }) => data?.map(m => m.user_id) || [])
+          );
 
         setMembers(membersData || []);
       }
@@ -86,13 +92,22 @@ export const useHousehold = () => {
 
       if (householdError) throw householdError;
 
-      // Update user profile with household_id
+      // Update user profile and create membership record
       const { error: profileError } = await supabase
         .from('profiles')
-        .update({ household_id: householdData.id })
+        .update({ current_household_id: householdData.id, household_id: householdData.id })
         .eq('user_id', user.id);
 
       if (profileError) throw profileError;
+
+      // Create membership record
+      await supabase
+        .from('household_memberships')
+        .insert({
+          user_id: user.id,
+          household_id: householdData.id,
+          role: 'admin'
+        });
 
       // Create initial leaderboard season
       await supabase
@@ -135,13 +150,22 @@ export const useHousehold = () => {
         throw new Error('Invalid invite code');
       }
 
-      // Update user profile with household_id
+      // Update user profile and create membership
       const { error: profileError } = await supabase
         .from('profiles')
-        .update({ household_id: householdData.id })
+        .update({ current_household_id: householdData.id, household_id: householdData.id })
         .eq('user_id', user.id);
 
       if (profileError) throw profileError;
+
+      // Create membership record
+      await supabase
+        .from('household_memberships')
+        .insert({
+          user_id: user.id,
+          household_id: householdData.id,
+          role: 'member'
+        });
 
       toast({
         title: 'Joined household!',

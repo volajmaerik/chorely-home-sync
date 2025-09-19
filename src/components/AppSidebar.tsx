@@ -46,10 +46,10 @@ export function AppSidebar() {
   };
 
   const getNavCls = ({ isActive }: { isActive: boolean }) =>
-    `flex items-center w-full transition-colors ${
+    `flex items-center w-full transition-all duration-200 ${
       isActive 
-        ? "bg-primary text-primary-foreground font-medium" 
-        : "hover:bg-muted/50 text-muted-foreground hover:text-foreground"
+        ? "bg-gradient-to-r from-primary to-primary/90 text-primary-foreground font-medium shadow-lg" 
+        : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
     }`;
 
   // Don't show sidebar if no household (during setup)

@@ -146,6 +146,41 @@ export type Database = {
           },
         ]
       }
+      household_memberships: {
+        Row: {
+          created_at: string
+          household_id: string
+          id: string
+          joined_at: string
+          role: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          household_id: string
+          id?: string
+          joined_at?: string
+          role?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          household_id?: string
+          id?: string
+          joined_at?: string
+          role?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "household_memberships_household_id_fkey"
+            columns: ["household_id"]
+            isOneToOne: false
+            referencedRelation: "households"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       households: {
         Row: {
           admin_id: string
@@ -217,6 +252,7 @@ export type Database = {
       profiles: {
         Row: {
           created_at: string
+          current_household_id: string | null
           display_name: string | null
           household_id: string | null
           id: string
@@ -227,6 +263,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string
+          current_household_id?: string | null
           display_name?: string | null
           household_id?: string | null
           id?: string
@@ -237,6 +274,7 @@ export type Database = {
         }
         Update: {
           created_at?: string
+          current_household_id?: string | null
           display_name?: string | null
           household_id?: string | null
           id?: string
@@ -245,7 +283,15 @@ export type Database = {
           user_id?: string
           username?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "profiles_current_household_id_fkey"
+            columns: ["current_household_id"]
+            isOneToOne: false
+            referencedRelation: "households"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       user_points: {
         Row: {
@@ -304,6 +350,10 @@ export type Database = {
       get_user_household_id: {
         Args: { user_uuid: string }
         Returns: string
+      }
+      user_belongs_to_any_household: {
+        Args: { household_uuid: string; user_uuid: string }
+        Returns: boolean
       }
       user_belongs_to_household: {
         Args: { household_uuid: string; user_uuid: string }
