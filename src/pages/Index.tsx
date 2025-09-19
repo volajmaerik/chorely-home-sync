@@ -86,17 +86,17 @@ const Index = () => {
         <AppSidebar />
         
         <div className="flex-1 flex flex-col">
-          <header className="border-b border-border bg-card">
+          <header className="bg-gradient-to-r from-background via-muted/30 to-background border-b border-border/50 backdrop-blur-sm">
             <div className="container mx-auto px-4 py-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <SidebarTrigger />
+                <SidebarTrigger className="text-foreground hover:bg-accent" />
                 <div>
                   <h1 className="text-xl font-bold text-foreground">Chorely Dashboard</h1>
                   <p className="text-sm text-muted-foreground">{household?.name}</p>
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <Button variant="outline" onClick={signOut}>
+                <Button variant="outline" onClick={signOut} className="text-foreground border-border hover:bg-accent">
                   Sign Out
                 </Button>
               </div>
@@ -106,52 +106,52 @@ const Index = () => {
           <main className="container mx-auto px-4 py-6 space-y-6 flex-1">
             {/* Quick Stats */}
             <div className="grid gap-4 md:grid-cols-4">
-              <Card>
+              <Card className="card-elevated">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium">Your Points</CardTitle>
-                  <Trophy className="h-4 w-4 text-muted-foreground" />
+                  <CardTitle className="text-sm font-medium text-foreground">Your Points</CardTitle>
+                  <Trophy className="h-4 w-4 text-primary" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">{userPoints}</div>
+                  <div className="text-2xl font-bold text-foreground">{userPoints}</div>
                   <p className="text-xs text-muted-foreground">
                     Rank #{userRank || '-'} in household
                   </p>
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="card-elevated">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium">Available Chores</CardTitle>
-                  <CheckCircle2 className="h-4 w-4 text-muted-foreground" />
+                  <CardTitle className="text-sm font-medium text-foreground">Available Chores</CardTitle>
+                  <CheckCircle2 className="h-4 w-4 text-success" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">{availableChores.length}</div>
+                  <div className="text-2xl font-bold text-foreground">{availableChores.length}</div>
                   <p className="text-xs text-muted-foreground">
                     Ready to claim
                   </p>
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="card-elevated">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium">My Chores</CardTitle>
-                  <Clock className="h-4 w-4 text-muted-foreground" />
+                  <CardTitle className="text-sm font-medium text-foreground">My Chores</CardTitle>
+                  <Clock className="h-4 w-4 text-primary" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">{myChores.length}</div>
+                  <div className="text-2xl font-bold text-foreground">{myChores.length}</div>
                   <p className="text-xs text-muted-foreground">
                     In progress or completed
                   </p>
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="card-elevated">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium">Season Ends</CardTitle>
-                  <TrendingUp className="h-4 w-4 text-muted-foreground" />
+                  <CardTitle className="text-sm font-medium text-foreground">Season Ends</CardTitle>
+                  <TrendingUp className="h-4 w-4 text-primary" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">{daysLeft}</div>
+                  <div className="text-2xl font-bold text-foreground">{daysLeft}</div>
                   <p className="text-xs text-muted-foreground">
                     Days remaining
                   </p>
@@ -162,11 +162,11 @@ const Index = () => {
             {/* Main Content Grid */}
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {/* Available Chores */}
-              <Card>
+              <Card className="card-elevated">
                 <CardHeader>
                   <div className="flex items-center justify-between">
-                    <CardTitle>Available Chores</CardTitle>
-                    <Button variant="ghost" size="sm" onClick={() => navigate('/chores')}>
+                    <CardTitle className="text-foreground">Available Chores</CardTitle>
+                    <Button variant="ghost" size="sm" onClick={() => navigate('/chores')} className="button-enhanced">
                       <List className="h-4 w-4 mr-2" />
                       View All
                     </Button>
@@ -177,14 +177,14 @@ const Index = () => {
                 </CardHeader>
                 <CardContent className="space-y-2">
                   {availableChores.slice(0, 3).map((chore) => (
-                    <div key={chore.id} className="flex items-center justify-between p-3 bg-muted rounded-lg">
+                    <div key={chore.id} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg border">
                       <div>
-                        <p className="font-medium">{chore.name}</p>
+                        <p className="font-medium text-foreground">{chore.name}</p>
                         <Badge variant="secondary" className="text-xs">
                           {chore.base_points} points
                         </Badge>
                       </div>
-                      <Button size="sm" onClick={() => navigate('/chores')}>
+                      <Button size="sm" onClick={() => navigate('/chores')} className="button-enhanced">
                         Claim
                       </Button>
                     </div>
@@ -198,11 +198,11 @@ const Index = () => {
               </Card>
 
               {/* Current Leaderboard */}
-              <Card>
+              <Card className="card-elevated">
                 <CardHeader>
                   <div className="flex items-center justify-between">
-                    <CardTitle>Leaderboard</CardTitle>
-                    <Button variant="ghost" size="sm" onClick={() => navigate('/leaderboard')}>
+                    <CardTitle className="text-foreground">Leaderboard</CardTitle>
+                    <Button variant="ghost" size="sm" onClick={() => navigate('/leaderboard')} className="button-enhanced">
                       <Trophy className="h-4 w-4 mr-2" />
                       View Full
                     </Button>
@@ -213,12 +213,12 @@ const Index = () => {
                 </CardHeader>
                 <CardContent className="space-y-2">
                   {leaderboard.slice(0, 3).map((entry, index) => (
-                    <div key={entry.user_id} className="flex items-center gap-3 p-3 bg-muted rounded-lg">
+                    <div key={entry.user_id} className="flex items-center gap-3 p-3 bg-muted/50 rounded-lg border">
                       <div className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground text-sm font-bold">
                         {index + 1}
                       </div>
                       <div className="flex-1">
-                        <p className="font-medium">
+                        <p className="font-medium text-foreground">
                           {entry.profiles.display_name || entry.profiles.username}
                           {entry.user_id === user.id && ' (You)'}
                         </p>
@@ -231,9 +231,9 @@ const Index = () => {
               </Card>
 
               {/* Quick Actions */}
-              <Card>
+              <Card className="card-elevated">
                 <CardHeader>
-                  <CardTitle>Quick Actions</CardTitle>
+                  <CardTitle className="text-foreground">Quick Actions</CardTitle>
                   <CardDescription>
                     Common tasks and navigation
                   </CardDescription>
@@ -241,7 +241,7 @@ const Index = () => {
                 <CardContent className="space-y-3">
                   <Button 
                     variant="outline" 
-                    className="w-full justify-start" 
+                    className="w-full justify-start button-enhanced text-foreground" 
                     onClick={() => navigate('/chores')}
                   >
                     <List className="h-4 w-4 mr-2" />
@@ -250,7 +250,7 @@ const Index = () => {
                   
                   <Button 
                     variant="outline" 
-                    className="w-full justify-start" 
+                    className="w-full justify-start button-enhanced text-foreground" 
                     onClick={() => navigate('/my-chores')}
                   >
                     <CheckCircle2 className="h-4 w-4 mr-2" />
@@ -259,7 +259,7 @@ const Index = () => {
                   
                   <Button 
                     variant="outline" 
-                    className="w-full justify-start" 
+                    className="w-full justify-start button-enhanced text-foreground" 
                     onClick={() => navigate('/evaluations')}
                   >
                     <Star className="h-4 w-4 mr-2" />

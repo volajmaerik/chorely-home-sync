@@ -64,10 +64,10 @@ const Chores = () => {
         <AppSidebar />
         
         <div className="flex-1 flex flex-col">
-          <header className="border-b border-border bg-card">
+          <header className="bg-gradient-to-r from-background via-muted/30 to-background border-b border-border/50 backdrop-blur-sm">
             <div className="container mx-auto px-4 py-4">
               <div className="flex items-center gap-4">
-                <SidebarTrigger />
+                <SidebarTrigger className="text-foreground hover:bg-accent" />
                 <div>
                   <h1 className="text-2xl font-bold text-foreground">All Chores</h1>
                   <p className="text-sm text-muted-foreground">{household?.name}</p>
