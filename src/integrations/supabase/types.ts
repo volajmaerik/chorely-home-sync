@@ -305,6 +305,10 @@ export type Database = {
         Args: { user_uuid: string }
         Returns: string
       }
+      user_belongs_to_household: {
+        Args: { household_uuid: string; user_uuid: string }
+        Returns: boolean
+      }
     }
     Enums: {
       chore_status: "available" | "claimed" | "completed" | "archived"
