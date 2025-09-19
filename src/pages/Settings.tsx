@@ -523,24 +523,11 @@ const Settings = () => {
                       if (!code) return;
                       
                       try {
-                        const { data, error } = await supabase
-                          .from('households')
-                          .select('id')
-                          .eq('invite_code', code)
-                          .single();
+                        const { error } = await supabase.rpc('join_household_by_code', {
+                          invite_code: code
+                        });
                         
-                        if (error || !data) throw new Error('Invalid invite code');
-                        
-                        // Create membership
-                        const { error: membershipError } = await supabase
-                          .from('household_memberships')
-                          .insert({
-                            user_id: user!.id,
-                            household_id: data.id,
-                            role: 'member'
-                          });
-                        
-                        if (membershipError) throw membershipError;
+                        if (error) throw error;
                         
                         toast({
                           title: 'Successfully joined household!',

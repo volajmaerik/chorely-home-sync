@@ -351,6 +351,10 @@ export type Database = {
         Args: { user_uuid: string }
         Returns: string
       }
+      join_household_by_code: {
+        Args: { invite_code: string }
+        Returns: undefined
+      }
       user_belongs_to_any_household: {
         Args: { household_uuid: string; user_uuid: string }
         Returns: boolean
