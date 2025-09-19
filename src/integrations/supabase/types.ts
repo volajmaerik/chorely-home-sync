@@ -301,6 +301,10 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: string
       }
+      get_user_household_id: {
+        Args: { user_uuid: string }
+        Returns: string
+      }
     }
     Enums: {
       chore_status: "available" | "claimed" | "completed" | "archived"
