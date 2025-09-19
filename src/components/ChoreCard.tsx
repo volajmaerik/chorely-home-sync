@@ -18,9 +18,11 @@ interface ChoreCardProps {
   };
   onClaim?: (choreId: string) => void;
   onComplete?: (choreId: string) => void;
+  showClaimButton?: boolean;
+  compact?: boolean;
 }
 
-export const ChoreCard = ({ chore, onClaim, onComplete }: ChoreCardProps) => {
+export const ChoreCard = ({ chore, onClaim, onComplete, showClaimButton, compact }: ChoreCardProps) => {
   const { user } = useAuth();
 
   const getStatusColor = (status: string) => {
@@ -44,6 +46,46 @@ export const ChoreCard = ({ chore, onClaim, onComplete }: ChoreCardProps) => {
   const canClaim = chore.status === 'available';
   const canComplete = chore.status === 'claimed' && chore.claimed_by === user?.id;
   const isUserChore = chore.claimed_by === user?.id || chore.completed_by === user?.id;
+
+  if (compact) {
+    return (
+      <div className={`border rounded-lg p-3 hover:bg-muted/50 transition-colors ${isUserChore ? 'ring-1 ring-primary/30 bg-primary/5' : ''}`}>
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex-1 min-w-0">
+            <h4 className="font-medium truncate">{chore.name}</h4>
+            {chore.description && (
+              <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
+                {chore.description}
+              </p>
+            )}
+            <div className="flex items-center gap-2 mt-2">
+              <Badge variant="outline" className="text-xs">
+                {chore.final_points_awarded || chore.base_points} pts
+              </Badge>
+              <Badge variant="secondary" className={`text-xs ${getStatusColor(chore.status)} text-white`}>
+                <div className="flex items-center gap-1">
+                  {getStatusIcon(chore.status)}
+                  {chore.status}
+                </div>
+              </Badge>
+            </div>
+          </div>
+          <div className="flex gap-1">
+            {canClaim && onClaim && (
+              <Button size="sm" onClick={() => onClaim(chore.id)} className="flex-shrink-0">
+                Claim
+              </Button>
+            )}
+            {canComplete && onComplete && (
+              <Button size="sm" onClick={() => onComplete(chore.id)} variant="secondary" className="flex-shrink-0">
+                Complete
+              </Button>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <Card className={`transition-all hover:shadow-md ${isUserChore ? 'ring-2 ring-primary/20' : ''}`}>

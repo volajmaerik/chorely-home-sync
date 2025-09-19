@@ -62,7 +62,7 @@ export function AppSidebar() {
   }
 
   return (
-    <Sidebar className={isCollapsed ? "w-14" : "w-60"}>
+    <Sidebar className={`${isCollapsed ? "w-14" : "w-60"} sidebar-transition`}>
       <SidebarContent>
         {/* Main Navigation */}
         <SidebarGroup>

@@ -54,9 +54,9 @@ export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   return (
     <div className="flex min-h-screen w-full">
       <AppSidebar />
-      <SidebarInset className="flex-1 flex flex-col">
+      <SidebarInset className="flex-1 flex flex-col sidebar-transition">
         <Header />
-        <main className="flex-1 p-4 md:p-6">
+        <main className="flex-1 p-4 md:p-6 animate-page-enter">
           {children}
         </main>
       </SidebarInset>

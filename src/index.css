@@ -211,4 +211,30 @@ All colors MUST be HSL.
     50% { transform: scale(1.05) translateY(-5px); opacity: 0.8; }
     100% { transform: scale(1) translateY(0); opacity: 1; }
   }
+
+  /* Page transitions */
+  .animate-page-enter {
+    animation: pageEnter 0.3s ease-out;
+  }
+  
+  @keyframes pageEnter {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Prevent layout shift during transitions */
+  * {
+    transition: all 0.2s ease-out;
+  }
+  
+  /* Smooth sidebar transitions */
+  .sidebar-transition {
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
 }
