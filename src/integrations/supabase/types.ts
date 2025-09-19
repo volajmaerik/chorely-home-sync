@@ -14,6 +14,138 @@ export type Database = {
   }
   public: {
     Tables: {
+      chore_suggestions: {
+        Row: {
+          created_at: string
+          description: string | null
+          household_id: string
+          id: string
+          name: string
+          status: Database["public"]["Enums"]["suggestion_status"]
+          suggested_by: string
+          suggested_points: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          household_id: string
+          id?: string
+          name: string
+          status?: Database["public"]["Enums"]["suggestion_status"]
+          suggested_by: string
+          suggested_points?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          household_id?: string
+          id?: string
+          name?: string
+          status?: Database["public"]["Enums"]["suggestion_status"]
+          suggested_by?: string
+          suggested_points?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "chore_suggestions_household_id_fkey"
+            columns: ["household_id"]
+            isOneToOne: false
+            referencedRelation: "households"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      chores: {
+        Row: {
+          average_rating: number | null
+          base_points: number
+          claimed_by: string | null
+          completed_at: string | null
+          completed_by: string | null
+          created_at: string
+          description: string | null
+          final_points_awarded: number | null
+          household_id: string
+          id: string
+          name: string
+          status: Database["public"]["Enums"]["chore_status"]
+          updated_at: string
+        }
+        Insert: {
+          average_rating?: number | null
+          base_points?: number
+          claimed_by?: string | null
+          completed_at?: string | null
+          completed_by?: string | null
+          created_at?: string
+          description?: string | null
+          final_points_awarded?: number | null
+          household_id: string
+          id?: string
+          name: string
+          status?: Database["public"]["Enums"]["chore_status"]
+          updated_at?: string
+        }
+        Update: {
+          average_rating?: number | null
+          base_points?: number
+          claimed_by?: string | null
+          completed_at?: string | null
+          completed_by?: string | null
+          created_at?: string
+          description?: string | null
+          final_points_awarded?: number | null
+          household_id?: string
+          id?: string
+          name?: string
+          status?: Database["public"]["Enums"]["chore_status"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "chores_household_id_fkey"
+            columns: ["household_id"]
+            isOneToOne: false
+            referencedRelation: "households"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      evaluations: {
+        Row: {
+          chore_id: string
+          created_at: string
+          evaluator_id: string
+          id: string
+          rating: number
+        }
+        Insert: {
+          chore_id: string
+          created_at?: string
+          evaluator_id: string
+          id?: string
+          rating: number
+        }
+        Update: {
+          chore_id?: string
+          created_at?: string
+          evaluator_id?: string
+          id?: string
+          rating?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "evaluations_chore_id_fkey"
+            columns: ["chore_id"]
+            isOneToOne: false
+            referencedRelation: "chores"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       households: {
         Row: {
           admin_id: string
@@ -40,6 +172,47 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      leaderboard_seasons: {
+        Row: {
+          created_at: string
+          end_date: string
+          household_id: string
+          id: string
+          prize_pool: string | null
+          start_date: string
+          status: Database["public"]["Enums"]["season_status"]
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          end_date: string
+          household_id: string
+          id?: string
+          prize_pool?: string | null
+          start_date?: string
+          status?: Database["public"]["Enums"]["season_status"]
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          end_date?: string
+          household_id?: string
+          id?: string
+          prize_pool?: string | null
+          start_date?: string
+          status?: Database["public"]["Enums"]["season_status"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "leaderboard_seasons_household_id_fkey"
+            columns: ["household_id"]
+            isOneToOne: false
+            referencedRelation: "households"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       profiles: {
         Row: {
@@ -74,6 +247,51 @@ export type Database = {
         }
         Relationships: []
       }
+      user_points: {
+        Row: {
+          created_at: string
+          household_id: string
+          id: string
+          points: number
+          season_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          household_id: string
+          id?: string
+          points?: number
+          season_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          household_id?: string
+          id?: string
+          points?: number
+          season_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_points_household_id_fkey"
+            columns: ["household_id"]
+            isOneToOne: false
+            referencedRelation: "households"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "user_points_season_id_fkey"
+            columns: ["season_id"]
+            isOneToOne: false
+            referencedRelation: "leaderboard_seasons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
@@ -85,7 +303,9 @@ export type Database = {
       }
     }
     Enums: {
-      [_ in never]: never
+      chore_status: "available" | "claimed" | "completed" | "archived"
+      season_status: "active" | "completed"
+      suggestion_status: "pending" | "approved" | "rejected"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -212,6 +432,10 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      chore_status: ["available", "claimed", "completed", "archived"],
+      season_status: ["active", "completed"],
+      suggestion_status: ["pending", "approved", "rejected"],
+    },
   },
 } as const
