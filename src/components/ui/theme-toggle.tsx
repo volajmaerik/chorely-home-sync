@@ -6,6 +6,14 @@ export function ThemeToggle() {
   const [theme, setTheme] = React.useState<"dark" | "light" | "system">("system")
 
   React.useEffect(() => {
+    // Load theme from localStorage on mount
+    const savedTheme = localStorage.getItem("theme") as "dark" | "light" | "system" | null;
+    if (savedTheme) {
+      setTheme(savedTheme);
+    }
+  }, []);
+
+  React.useEffect(() => {
     const root = window.document.documentElement
 
     root.classList.remove("light", "dark")
@@ -21,6 +29,9 @@ export function ThemeToggle() {
     }
 
     root.classList.add(theme)
+    
+    // Save theme to localStorage
+    localStorage.setItem("theme", theme);
   }, [theme])
 
   return (

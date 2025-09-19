@@ -14,6 +14,8 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from '@/hooks/use-toast';
 import { Camera, Key, Shield, Smartphone, User, Users, Instagram, MessageCircle, Mail, Eye, EyeOff } from 'lucide-react';
+import { OTPSetup } from '@/components/auth/OTPSetup';
+import { PasskeySetup } from '@/components/auth/PasskeySetup';
 
 const Settings = () => {
   const { user, signOut } = useAuth();
@@ -37,6 +39,10 @@ const Settings = () => {
   
   const [loading, setLoading] = useState(false);
   const [profileLoading, setProfileLoading] = useState(true);
+  
+  // Dialog states
+  const [showOTPSetup, setShowOTPSetup] = useState(false);
+  const [showPasskeySetup, setShowPasskeySetup] = useState(false);
 
   // Load profile data
   useEffect(() => {
@@ -343,15 +349,36 @@ const Settings = () => {
                   Add an extra layer of security with OTP codes
                 </p>
                 {twoFactorEnabled && (
-                  <Badge variant="outline" className="bg-green-50 border-green-200 text-green-800">
+                  <Badge variant="outline" className="bg-success/10 border-success/20 text-success">
                     Enabled
                   </Badge>
                 )}
               </div>
-              <Switch
-                checked={twoFactorEnabled}
-                onCheckedChange={setTwoFactorEnabled}
-              />
+              <div className="flex items-center gap-2">
+                {twoFactorEnabled ? (
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={() => {
+                      setTwoFactorEnabled(false);
+                      toast({
+                        title: 'Two-factor authentication disabled',
+                        description: 'Your account is now using single-factor authentication.',
+                      });
+                    }}
+                  >
+                    Disable
+                  </Button>
+                ) : (
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={() => setShowOTPSetup(true)}
+                  >
+                    Set Up
+                  </Button>
+                )}
+              </div>
             </div>
           </div>
 
@@ -361,20 +388,44 @@ const Settings = () => {
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <div className="space-y-1">
-                <h4 className="font-medium">Passkey Authentication</h4>
+                <h4 className="font-medium flex items-center gap-2">
+                  <Key className="h-4 w-4" />
+                  Passkey Authentication
+                </h4>
                 <p className="text-sm text-muted-foreground">
                   Use biometric authentication instead of passwords
                 </p>
                 {passkeyEnabled && (
-                  <Badge variant="outline" className="bg-blue-50 border-blue-200 text-blue-800">
+                  <Badge variant="outline" className="bg-primary/10 border-primary/20 text-primary">
                     Configured
                   </Badge>
                 )}
               </div>
-              <Switch
-                checked={passkeyEnabled}
-                onCheckedChange={setPasskeyEnabled}
-              />
+              <div className="flex items-center gap-2">
+                {passkeyEnabled ? (
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={() => {
+                      setPasskeyEnabled(false);
+                      toast({
+                        title: 'Passkey authentication disabled',
+                        description: 'Your passkeys have been removed from this account.',
+                      });
+                    }}
+                  >
+                    Remove
+                  </Button>
+                ) : (
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={() => setShowPasskeySetup(true)}
+                  >
+                    Set Up
+                  </Button>
+                )}
+              </div>
             </div>
           </div>
         </CardContent>
@@ -422,6 +473,19 @@ const Settings = () => {
           </Button>
         </CardContent>
       </Card>
+
+      {/* Setup Dialogs */}
+      <OTPSetup 
+        isOpen={showOTPSetup}
+        onClose={() => setShowOTPSetup(false)}
+        onComplete={() => setTwoFactorEnabled(true)}
+      />
+      
+      <PasskeySetup 
+        isOpen={showPasskeySetup}
+        onClose={() => setShowPasskeySetup(false)}
+        onComplete={() => setPasskeyEnabled(true)}
+      />
     </div>
   );
 };

@@ -70,7 +70,7 @@ All colors MUST be HSL.
     --radius: 0.75rem;
 
     --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 240 10% 15%;
+    --sidebar-foreground: 240 10% 10%;
     --sidebar-primary: 262 83% 58%;
     --sidebar-primary-foreground: 210 40% 98%;
     --sidebar-accent: 262 83% 95%;
@@ -190,7 +190,7 @@ All colors MUST be HSL.
     --glass-border: 210 20% 98% / 0.1;
     
     --sidebar-background: 224 71.4% 4.1%;
-    --sidebar-foreground: 210 20% 85%;
+    --sidebar-foreground: 210 20% 98%;
     --sidebar-primary: 263 70% 50.4%;
     --sidebar-primary-foreground: 210 20% 98%;
     --sidebar-accent: 215 27.9% 16.9%;
