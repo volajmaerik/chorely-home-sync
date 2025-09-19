@@ -89,14 +89,64 @@ All colors MUST be HSL.
     --popover: 224 71.4% 4.1%;
     --popover-foreground: 210 20% 98%;
 
-    --primary: 263 70% 50.4%;
-    --primary-foreground: 210 20% 98%;
+    --primary: 263 70% 60%;
+    --primary-foreground: 224 71.4% 4.1%;
 
     --secondary: 215 27.9% 16.9%;
     --secondary-foreground: 210 20% 98%;
 
     --muted: 215 27.9% 16.9%;
     --muted-foreground: 217.9 10.6% 64.9%;
+
+    --accent: 215 27.9% 16.9%;
+    --accent-foreground: 210 20% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: 263 70% 60%;
+
+    /* Enhanced dark mode colors */
+    --gradient-primary: linear-gradient(135deg, hsl(263 70% 60%), hsl(263 70% 70%));
+    --gradient-subtle: linear-gradient(180deg, hsl(224 71.4% 4.1%), hsl(215 27.9% 8%));
+    
+    /* Dark mode navbar */
+    --navbar-bg: linear-gradient(135deg, hsl(224 71.4% 4.1%) 0%, hsl(215 27.9% 6%) 100%);
+    --navbar-border: hsl(215 27.9% 16.9% / 0.5);
+    
+    /* Enhanced card styling for dark mode */
+    --card-elevated: 0 8px 25px -5px hsl(224 71.4% 4.1% / 0.3);
+    --card-hover: 0 12px 35px -8px hsl(224 71.4% 4.1% / 0.4);
+    
+    /* Button improvements for dark mode */
+    --button-shadow: 0 2px 4px hsl(224 71.4% 4.1% / 0.3);
+    --button-shadow-hover: 0 4px 8px hsl(224 71.4% 4.1% / 0.4);
+
+    /* Success color for dark mode */
+    --success: 142 76% 46%;
+    --success-foreground: 224 71.4% 4.1%;
+
+    /* Dark mode Gen Z colors */
+    --primary-glow: 263 70% 70%;
+    --accent-purple: 280 100% 80%;
+    --accent-pink: 330 85% 75%;
+    --accent-blue: 220 100% 80%;
+    --neon-green: 120 100% 60%;
+    
+    /* Dark glass morphism */
+    --glass-bg: 224 71.4% 4.1% / 0.8;
+    --glass-border: 210 20% 98% / 0.1;
+
+    --sidebar-background: 224 71.4% 4.1%;
+    --sidebar-foreground: 210 20% 98%;
+    --sidebar-primary: 263 70% 60%;
+    --sidebar-primary-foreground: 224 71.4% 4.1%;
+    --sidebar-accent: 215 27.9% 16.9%;
+    --sidebar-accent-foreground: 210 20% 98%;
+    --sidebar-border: 215 27.9% 16.9%;
+    --sidebar-ring: 263 70% 60%;
 
     --accent: 215 27.9% 16.9%;
     --accent-foreground: 210 20% 98%;
