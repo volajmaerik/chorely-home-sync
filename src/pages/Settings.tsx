@@ -234,7 +234,7 @@ const Settings = () => {
                 </div>
               </div>
               
-              <Button onClick={updateProfile} disabled={loading} className="w-full sm:w-auto">
+              <Button onClick={updateProfile} disabled={loading} className="w-full sm:w-auto text-primary-foreground">
                 {loading ? 'Updating...' : 'Update Profile'}
               </Button>
             </div>
