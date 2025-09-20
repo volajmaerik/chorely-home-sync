@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
-import { Chrome, Mail, Shield, Sparkles, Check } from 'lucide-react';
+import { Chrome, Mail, Shield, Check } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from '@/hooks/use-toast';
 
@@ -153,7 +153,11 @@ const Auth = () => {
       <div className="w-full max-w-md lg:max-w-lg xl:max-w-xl mx-auto">
         <div className="text-center mb-8 space-y-4">
           <div className="mx-auto w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-lg">
-            <Sparkles className="w-8 h-8 lg:w-10 lg:h-10 text-primary-foreground" />
+            <img 
+              src="/chorely-logo.png" 
+              alt="Chorely Logo" 
+              className="w-8 h-8 lg:w-10 lg:h-10 object-contain"
+            />
           </div>
           <div>
             <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
