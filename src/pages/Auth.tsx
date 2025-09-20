@@ -145,7 +145,7 @@ const Auth = () => {
   }
 
   return (
-    <div className="min-h-screen items-center bg-gradient-to-br from-background to-muted/20 p-4 sm:p-6 md:p-8 lg:p-12">
+    <div className="min-h-screen flex items-center bg-gradient-to-br from-background to-muted/20 p-4 sm:p-6 md:p-8 lg:p-12 mx-auto">
       <div className="absolute top-4 right-4">
         <ThemeToggle />
       </div>
