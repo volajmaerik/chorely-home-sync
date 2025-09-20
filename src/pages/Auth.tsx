@@ -97,7 +97,7 @@ const Auth = () => {
           <ThemeToggle />
         </div>
         
-        <div className="w-full max-w-md">
+        <div className="w-full max-w-md flex justify-center">
           <Card className="border-border/50 shadow-xl backdrop-blur-sm">
             <CardHeader className="text-center space-y-4">
               <div className="mx-auto w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
