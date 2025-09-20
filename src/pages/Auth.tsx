@@ -150,16 +150,16 @@ const Auth = () => {
         <ThemeToggle />
       </div>
       
-      <div className="w-full max-w-md mx-auto">
+      <div className="w-full max-w-md lg:max-w-lg xl:max-w-xl mx-auto">
         <div className="text-center mb-8 space-y-4">
-          <div className="mx-auto w-16 h-16 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-lg">
-            <Sparkles className="w-8 h-8 text-primary-foreground" />
+          <div className="mx-auto w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-lg">
+            <Sparkles className="w-8 h-8 lg:w-10 lg:h-10 text-primary-foreground" />
           </div>
           <div>
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
+            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
               Chorely
             </h1>
-            <p className="text-muted-foreground mt-2 text-lg">Gamified household management</p>
+            <p className="text-muted-foreground mt-2 text-lg lg:text-xl">Gamified household management</p>
           </div>
         </div>
 
