@@ -152,7 +152,7 @@ const Auth = () => {
       
       <div className="w-full max-w-md lg:max-w-lg xl:max-w-xl mx-auto">
         <div className="text-center mb-8 space-y-4">
-          <div className="mx-auto w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-lg p-2">
+          <div className="mx-auto w-16 h-16 lg:w-20 lg:h-20 bg-card border-2 border-border rounded-2xl flex items-center justify-center shadow-lg p-3">
             <img src="/chorely-logo.png" alt="Chorely" className="w-full h-full object-contain" />
           </div>
           <div>

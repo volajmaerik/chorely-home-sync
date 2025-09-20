@@ -66,9 +66,11 @@ export function AppSidebar() {
       <SidebarContent>
         {/* Logo Section */}
         <div className={`flex items-center gap-2 p-4 border-b border-sidebar-border ${isCollapsed ? "justify-center" : ""}`}>
-          <img src="/chorely-logo.png" alt="Chorely" className="h-8 w-8 flex-shrink-0" />
+          <div className="w-8 h-8 bg-sidebar-accent rounded-lg border border-sidebar-border p-1.5 flex items-center justify-center flex-shrink-0">
+            <img src="/chorely-logo.png" alt="Chorely" className="w-full h-full object-contain" />
+          </div>
           {!isCollapsed && (
-            <span className="font-bold text-lg bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+            <span className="font-bold text-lg text-sidebar-foreground">
               Chorely
             </span>
           )}

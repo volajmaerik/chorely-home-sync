@@ -35,8 +35,10 @@ export function Header() {
         <SidebarTrigger className="text-muted-foreground hover:text-foreground transition-colors" />
         
         <div className="flex items-center gap-2">
-          <img src="/chorely-logo.png" alt="Chorely" className="h-8 w-8" />
-          <span className="font-bold text-lg bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+          <div className="w-8 h-8 bg-card rounded-lg border border-border/50 p-1.5 flex items-center justify-center">
+            <img src="/chorely-logo.png" alt="Chorely" className="w-full h-full object-contain" />
+          </div>
+          <span className="font-bold text-lg bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
             Chorely
           </span>
         </div>
