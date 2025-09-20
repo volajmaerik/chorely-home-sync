@@ -64,17 +64,6 @@ export function AppSidebar() {
   return (
     <Sidebar className={`${isCollapsed ? "w-14" : "w-60"} sidebar-transition`}>
       <SidebarContent>
-        {/* Logo Section */}
-        <div className={`flex items-center gap-2 p-4 border-b border-sidebar-border ${isCollapsed ? "justify-center" : ""}`}>
-          <div className="w-8 h-8 bg-primary rounded-lg p-1.5 flex items-center justify-center flex-shrink-0">
-            <img src="/chorely-logo.png" alt="Chorely" className="w-full h-full object-contain brightness-0 invert" />
-          </div>
-          {!isCollapsed && (
-            <span className="font-bold text-lg bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-              Chorely
-            </span>
-          )}
-        </div>
         {/* Main Navigation */}
         <SidebarGroup>
           <SidebarGroupLabel className={isCollapsed ? "sr-only" : ""}>
