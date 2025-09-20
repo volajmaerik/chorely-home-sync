@@ -35,9 +35,9 @@ export function Header() {
         <SidebarTrigger className="text-muted-foreground hover:text-foreground transition-colors" />
         
         <div className="flex items-center gap-2">
-          <Sparkles className="h-5 w-5 text-primary animate-pulse" />
+          <img src="/chorely-logo.png" alt="Chorely" className="h-8 w-8" />
           <span className="font-bold text-lg bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-            ChoreVibe
+            Chorely
           </span>
         </div>
 

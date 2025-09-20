@@ -152,8 +152,8 @@ const Auth = () => {
       
       <div className="w-full max-w-md lg:max-w-lg xl:max-w-xl mx-auto">
         <div className="text-center mb-8 space-y-4">
-          <div className="mx-auto w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-lg">
-            <Sparkles className="w-8 h-8 lg:w-10 lg:h-10 text-primary-foreground" />
+          <div className="mx-auto w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-lg p-2">
+            <img src="/chorely-logo.png" alt="Chorely" className="w-full h-full object-contain" />
           </div>
           <div>
             <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
