@@ -14,6 +14,7 @@ import Evaluations from "./pages/Evaluations";
 import Leaderboard from "./pages/Leaderboard";
 import Admin from "./pages/Admin";
 import Settings from "./pages/Settings";
+import Presentation from "./pages/Presentation";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -61,6 +62,7 @@ const App = () => {
                   <Settings />
                 </ProtectedRoute>
               } />
+              <Route path="/presentation" element={<Presentation />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
             <CookieConsent />
