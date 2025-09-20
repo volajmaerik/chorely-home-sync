@@ -24,6 +24,7 @@
             left: 0;
             width: 100%;
             height: 100%;
+            padding: 2rem;
         }
         .slide.active {
             display: flex;
@@ -40,6 +41,24 @@
         li {
             margin-bottom: 0.75rem;
         }
+        .db-table {
+            background-color: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+        .db-title {
+            font-weight: 700;
+            color: #1e293b;
+            border-bottom: 2px solid #cbd5e1;
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .db-field {
+            font-family: monospace;
+            font-size: 0.875rem;
+            color: #475569;
+        }
     </style>
 </head>
 <body class="w-screen h-screen">
@@ -52,274 +71,230 @@
                 <h1 class="text-5xl md:text-7xl font-extrabold text-slate-800 tracking-tight">Chorely: A Gamified Approach to Household Management</h1>
                 <p class="mt-6 text-xl text-slate-600">A Seminar Paper Presentation</p>
                 <div class="mt-8 border-t border-slate-200 pt-6">
-                    <p class="text-lg font-medium text-slate-700">Presenter: Adam Hlavatý, Erik Kováč, Martin Prošek, Erik Tomko</p>
+                    <p class="text-lg font-medium text-slate-700">Authors: Adam Hlavatý, Erik Kováč, Martin Prošek, Erik Tomko</p>
                     <p class="text-md text-slate-500">Course: Gamification</p>
                     <p class="text-md text-slate-500">Date: October 13, 2025</p>
                 </div>
             </div>
         </section>
 
-        <!-- Slide 2: The Problem -->
+        <!-- Slide 2: Project Goal -->
         <section class="slide items-center justify-center">
             <div class="grid md:grid-cols-2 gap-12 items-center slide-content">
                 <div class="order-2 md:order-1">
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6">The Problem with Chores in Shared Living</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6">Project Goal</h2>
                     <ul class="text-lg text-slate-600 space-y-4">
-                        <li><strong class="text-slate-700">The Core Conflict:</strong> The management of household chores is a primary source of friction in co-living environments like university dorms and shared apartments.</li>
-                        <li><strong class="text-slate-700">Why Traditional Methods Fail:</strong>
-                            <ul class="text-base mt-2 space-y-2 pl-4 border-l-2 border-slate-200">
-                                <li><strong>Diffusion of Responsibility:</strong> When a task belongs to everyone, it belongs to no one.</li>
-                                <li><strong>Lack of Accountability:</strong> Informal agreements are easily forgotten or ignored.</li>
-                                <li><strong>No Positive Feedback:</strong> Effort often goes unrecognized, leading to diminished motivation.</li>
-                            </ul>
-                        </li>
-                        <li><strong class="text-slate-700">The Result:</strong> Unfair workload distribution, strained housemate relationships, and a negative living environment.</li>
+                        <li><strong class="text-slate-700">The Problem:</strong> Managing household chores in shared living spaces is a common source of conflict, unfair workloads, and strained relationships.</li>
+                        <li><strong class="text-slate-700">The Objective:</strong> To apply gamification principles to transform mundane household tasks into an engaging, competitive, and rewarding experience.</li>
+                         <li><strong class="text-slate-700">The Vision:</strong> To foster a cleaner, more collaborative, and positive living environment by motivating users through a structured and interactive system.</li>
                     </ul>
                 </div>
                 <div class="order-1 md:order-2">
-                    <img src="https://placehold.co/600x400/e2e8f0/475569?text=Messy+Kitchen+Conflict" alt="Frustrated roommates in a messy kitchen" class="rounded-lg shadow-xl">
+                     <img src="https://placehold.co/600x400/e2e8f0/475569?text=Problem+vs+Solution" alt="A depiction of a messy room transforming into a clean one" class="rounded-lg shadow-xl">
                 </div>
             </div>
         </section>
 
-        <!-- Slide 3: The Solution -->
+        <!-- Slide 3: Target Audience -->
         <section class="slide items-center justify-center bg-slate-50">
             <div class="grid md:grid-cols-2 gap-12 items-center slide-content">
                  <div>
-                    <img src="https://placehold.co/600x400/e0e7ff/4338ca?text=Game+Elements" alt="Game elements like points, badges, and leaderboards" class="rounded-lg shadow-xl">
+                    <img src="https://placehold.co/600x400/e0e7ff/4338ca?text=Target+Audience" alt="Illustration of young people in a shared living space" class="rounded-lg shadow-xl">
                 </div>
                 <div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6">A Modern Solution: Gamification</h2>
-                    <ul class="text-lg text-slate-600 space-y-4">
-                        <li><strong class="text-slate-700">What is Gamification?</strong> The use of game design elements and mechanics in non-game contexts to motivate and engage people (Deterding et al., 2011).</li>
-                        <li><strong class="text-slate-700">The Goal:</strong> To transform mundane, real-world tasks into more engaging and rewarding experiences.</li>
-                        <li><strong class="text-slate-700">Key Game Elements:</strong>
-                            <ul class="text-base mt-2 space-y-2 pl-4">
-                                <li>Points & Progress Bars</li>
-                                <li>Leaderboards & Rankings</li>
-                                <li>Achievements & Badges</li>
-                                <li>Immediate Feedback Loops</li>
-                            </ul>
-                        </li>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6">Target Audience</h2>
+                     <ul class="text-lg text-slate-600 space-y-4">
+                        <li><strong class="text-slate-700">Primary Demographic:</strong> Young adults aged 18-28, including university students and young professionals.</li>
+                        <li><strong class="text-slate-700">Living Situation:</strong> Individuals in shared housing, dormitories, or co-living communities.</li>
+                        <li><strong class="text-slate-700">User Profile:</strong> Tech-savvy individuals who are motivated by social recognition, achievement, and friendly competition. They value experiences and collaborative environments.</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Slide 4: The Psychology -->
+        <!-- Slide 4: Key Features -->
         <section class="slide items-center justify-center">
             <div class="text-center slide-content">
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">The Psychology of Motivation</h2>
-                <p class="text-xl text-slate-500 mb-8">Self-Determination Theory (Ryan & Deci, 2000)</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-12">Key Features</h2>
                 <div class="grid md:grid-cols-3 gap-8 text-left">
                     <div class="bg-white p-6 rounded-lg shadow-lg border border-slate-200">
-                        <h3 class="text-2xl font-bold text-indigo-600 mb-3">Autonomy</h3>
-                        <p class="text-slate-600">The need to feel in control of one's own actions and choices. The feeling that you are the author of your own life.</p>
+                        <h3 class="text-2xl font-bold text-indigo-600 mb-3">Household Management</h3>
+                        <p class="text-slate-600">Users can create or join households with unique invite codes, with a designated admin to manage members and settings.</p>
                     </div>
                      <div class="bg-white p-6 rounded-lg shadow-lg border border-slate-200">
-                        <h3 class="text-2xl font-bold text-indigo-600 mb-3">Competence</h3>
-                        <p class="text-slate-600">The need to feel effective and capable of mastering tasks. It's the satisfaction of progress and achievement.</p>
+                        <h3 class="text-2xl font-bold text-indigo-600 mb-3">Dynamic Chore System</h3>
+                        <p class="text-slate-600">A shared list of chores that can be claimed, completed, and suggested by any member, keeping the system relevant and interactive.</p>
                     </div>
                      <div class="bg-white p-6 rounded-lg shadow-lg border border-slate-200">
-                        <h3 class="text-2xl font-bold text-indigo-600 mb-3">Relatedness</h3>
-                        <p class="text-slate-600">The need to feel connected to others and part of a community. It's about belonging and mutual respect.</p>
+                        <h3 class="text-2xl font-bold text-indigo-600 mb-3">Gamified Loop</h3>
+                        <p class="text-slate-600">A core system of points, seasonal leaderboards, and peer evaluations transforms chore completion into a competitive and rewarding game.</p>
                     </div>
                 </div>
-                 <p class="mt-8 text-lg text-slate-700 bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-r-lg">
-                    <strong>Our Thesis:</strong> A successful gamified system must be designed to satisfy these three fundamental needs.
-                </p>
             </div>
         </section>
 
-        <!-- Slide 5: Introducing Chorely -->
+        <!-- Slide 5: Gamification Strategy -->
         <section class="slide items-center justify-center bg-slate-50">
-            <div class="grid md:grid-cols-2 gap-12 items-center slide-content">
-                <div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6">Introducing Chorely: The Application</h2>
-                    <ul class="text-lg text-slate-600 space-y-4">
-                        <li><strong class="text-slate-700">What is Chorely?</strong> A responsive web application designed to gamify household chore management.</li>
-                        <li><strong class="text-slate-700">Target Audience:</strong> University students and young professionals in shared living situations.</li>
-                        <li><strong class="text-slate-700">Design Philosophy:</strong> To provide a clear, structured, and positive platform that reduces the stress associated with chores. The interface is modern, intuitive, and mobile-first.</li>
-                    </ul>
-                </div>
-                <div>
-                    <img src="https://placehold.co/600x400/c7d2fe/3730a3?text=Chorely+App" alt="The Chorely app logo on a smartphone screen" class="rounded-lg shadow-xl">
+            <div class="slide-content">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 text-center mb-8">Gamification Strategy</h2>
+                <div class="grid md:grid-cols-2 gap-8 text-left">
+                    <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200">
+                        <h3 class="text-xl font-bold text-slate-700 mb-3">Points & Progress (Competence)</h3>
+                        <p class="text-slate-600">Chores have point values that provide immediate, tangible feedback. This fosters a sense of accomplishment and mastery over the "game."</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200">
+                        <h3 class="text-xl font-bold text-slate-700 mb-3">Leaderboards & Seasons (Relatedness)</h3>
+                        <p class="text-slate-600">A seasonal leaderboard creates friendly competition and social context. Periodic resets keep the game fair and engaging for everyone.</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200">
+                        <h3 class="text-xl font-bold text-slate-700 mb-3">Peer Evaluation (Social Proof)</h3>
+                        <p class="text-slate-600">A 1-5 star rating system encourages high-quality work and modifies point rewards. It creates a self-sustaining feedback loop.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200">
+                        <h3 class="text-xl font-bold text-slate-700 mb-3">User Choice (Autonomy)</h3>
+                        <p class="text-slate-600">Users choose which chores to claim and can suggest new ones, providing a sense of control and ownership over the system.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Slide 6: Gameplay Loop -->
+        <!-- Slide 6: Technology Stack -->
         <section class="slide items-center justify-center">
+            <div class="slide-content">
+                 <h2 class="text-3xl md:text-4xl font-bold text-slate-800 text-center mb-12">Technology Stack</h2>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-lg border border-slate-200">
+                        <h3 class="text-2xl font-bold mb-4 text-indigo-600">Frontend</h3>
+                        <ul class="space-y-3 text-slate-600">
+                            <li><strong>Framework:</strong> React</li>
+                            <li><strong>Language:</strong> TypeScript</li>
+                            <li><strong>UI Library:</strong> shadcn/ui</li>
+                            <li><strong>Styling:</strong> Tailwind CSS</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg border border-slate-200">
+                        <h3 class="text-2xl font-bold mb-4 text-indigo-600">Backend & Database</h3>
+                        <ul class="space-y-3 text-slate-600">
+                            <li><strong>Platform:</strong> Supabase</li>
+                            <li><strong>Database:</strong> PostgreSQL</li>
+                            <li><strong>Authentication:</strong> Supabase Auth</li>
+                            <li><strong>APIs:</strong> Auto-generated RESTful APIs</li>
+                        </ul>
+                    </div>
+                 </div>
+            </div>
+        </section>
+        
+        <!-- Slide 7: System Architecture -->
+        <section class="slide items-center justify-center bg-slate-50">
             <div class="text-center slide-content">
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-12">How Chorely Works: The Core Gameplay Loop</h2>
-                <div class="flex flex-col md:flex-row items-center justify-between space-y-8 md:space-y-0 md:space-x-4">
-                    <div class="text-center">
-                        <div class="bg-white w-24 h-24 rounded-full flex items-center justify-center text-3xl font-bold text-indigo-600 shadow-md border-2 border-slate-200 mx-auto">1</div>
-                        <p class="mt-3 font-semibold text-slate-700">Suggest & Approve</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-12">System Architecture</h2>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md border-2 border-indigo-200 text-center w-48">
+                        <h3 class="font-bold text-xl text-indigo-700">Client</h3>
+                        <p class="text-sm text-slate-500">(React SPA)</p>
                     </div>
-                    <div class="text-slate-300 text-2xl font-light transform md:rotate-0 rotate-90">&rarr;</div>
-                    <div class="text-center">
-                        <div class="bg-white w-24 h-24 rounded-full flex items-center justify-center text-3xl font-bold text-indigo-600 shadow-md border-2 border-slate-200 mx-auto">2</div>
-                        <p class="mt-3 font-semibold text-slate-700">Claim Chore</p>
+                    <div class="text-3xl text-slate-400 font-light">&harr;</div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-2 border-sky-200 text-center w-48">
+                        <h3 class="font-bold text-xl text-sky-700">API</h3>
+                        <p class="text-sm text-slate-500">(Supabase)</p>
                     </div>
-                    <div class="text-slate-300 text-2xl font-light transform md:rotate-0 rotate-90">&rarr;</div>
-                    <div class="text-center">
-                        <div class="bg-white w-24 h-24 rounded-full flex items-center justify-center text-3xl font-bold text-indigo-600 shadow-md border-2 border-slate-200 mx-auto">3</div>
-                        <p class="mt-3 font-semibold text-slate-700">Complete Task</p>
-                    </div>
-                    <div class="text-slate-300 text-2xl font-light transform md:rotate-0 rotate-90">&rarr;</div>
-                    <div class="text-center">
-                        <div class="bg-white w-24 h-24 rounded-full flex items-center justify-center text-3xl font-bold text-indigo-600 shadow-md border-2 border-slate-200 mx-auto">4</div>
-                        <p class="mt-3 font-semibold text-slate-700">Peer Evaluation</p>
-                    </div>
-                     <div class="text-slate-300 text-2xl font-light transform md:rotate-0 rotate-90">&rarr;</div>
-                    <div class="text-center">
-                        <div class="bg-white w-24 h-24 rounded-full flex items-center justify-center text-3xl font-bold text-indigo-600 shadow-md border-2 border-slate-200 mx-auto">5</div>
-                        <p class="mt-3 font-semibold text-slate-700">Earn Points & Climb</p>
+                    <div class="text-3xl text-slate-400 font-light">&harr;</div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-2 border-emerald-200 text-center w-48">
+                        <h3 class="font-bold text-xl text-emerald-700">Database</h3>
+                        <p class="text-sm text-slate-500">(PostgreSQL)</p>
                     </div>
                 </div>
+                <p class="mt-8 text-lg text-slate-600">A standard client-server architecture where the React frontend communicates with the Supabase backend via a RESTful API.</p>
             </div>
         </section>
 
-        <!-- Slide 7: Gamification 1 -->
-        <section class="slide items-center justify-center bg-slate-50">
-             <div class="grid md:grid-cols-2 gap-12 items-center slide-content">
-                <div>
-                    <h2 class="text-2xl md:text-3xl font-bold text-slate-800 mb-2">Gamification in Detail (1/4)</h2>
-                    <p class="text-xl text-indigo-600 font-semibold mb-6">Fostering Competence</p>
-                    <ul class="text-lg text-slate-600 space-y-4">
-                        <li><strong class="text-slate-700">Immediate Feedback:</strong> Points are awarded upon completion, turning a thankless task into a measurable achievement.</li>
-                        <li><strong class="text-slate-700">Sense of Mastery:</strong> Users can track their cumulative score, providing a tangible sense of progress and validating their efforts.</li>
-                        <li><strong class="text-slate-700">Appeals to Achievers:</strong> This system directly motivates users who are driven by tangible markers of success (Bartle, 1996).</li>
-                    </ul>
-                </div>
-                <div>
-                     <img src="https://placehold.co/600x400/f0f9ff/0284c7?text=Points+Awarded!" alt="A chore card showing points awarded" class="rounded-lg shadow-xl">
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 8: Gamification 2 -->
-        <section class="slide items-center justify-center">
-             <div class="grid md:grid-cols-2 gap-12 items-center slide-content">
-                 <div class="order-2 md:order-1">
-                     <img src="https://placehold.co/600x400/fefce8/a16207?text=Leaderboard" alt="A leaderboard showing user rankings" class="rounded-lg shadow-xl">
-                </div>
-                <div class="order-1 md:order-2">
-                    <h2 class="text-2xl md:text-3xl font-bold text-slate-800 mb-2">Gamification in Detail (2/4)</h2>
-                    <p class="text-xl text-amber-600 font-semibold mb-6">Driving Competition and Relatedness</p>
-                    <ul class="text-lg text-slate-600 space-y-4">
-                        <li><strong class="text-slate-700">Social Context:</strong> The leaderboard makes individual contributions visible to everyone, creating friendly competition.</li>
-                        <li><strong class="text-slate-700">Fairness with "Seasons":</strong> The leaderboard resets periodically, giving everyone a fresh start and preventing discouragement.</li>
-                        <li><strong class="text-slate-700">Extrinsic Motivation:</strong> An optional, admin-defined prize pool adds a tangible goal (Marczewski, 2015).</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 9: Gamification 3 -->
-        <section class="slide items-center justify-center bg-slate-50">
-             <div class="grid md:grid-cols-2 gap-12 items-center slide-content">
-                <div>
-                    <h2 class="text-2xl md:text-3xl font-bold text-slate-800 mb-2">Gamification in Detail (3/4)</h2>
-                    <p class="text-xl text-sky-600 font-semibold mb-6">A Feedback and Social Proof Loop</p>
-                    <ul class="text-lg text-slate-600 space-y-4">
-                        <li><strong class="text-slate-700">Quality Control:</strong> Knowing work will be rated encourages users to maintain a high standard.</li>
-                        <li><strong class="text-slate-700">Dynamic Rewards:</strong> Final points are modified based on the average star rating. High-quality work earns bonus points.</li>
-                        <li><strong class="text-slate-700">Incentivized Participation:</strong> Evaluators earn a small number of points for rating others, strengthening the sense of community.</li>
-                    </ul>
-                </div>
-                <div>
-                     <img src="https://placehold.co/600x400/ecfdf5/059669?text=Peer+Evaluation" alt="The peer evaluation screen" class="rounded-lg shadow-xl">
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 10: Gamification 4 -->
-        <section class="slide items-center justify-center">
-            <div class="grid md:grid-cols-2 gap-12 items-center slide-content">
-                 <div class="order-2 md:order-1">
-                     <img src="https://placehold.co/600x400/f3e8ff/7e22ce?text=User+Choice" alt="A list of available chores for a user to choose from" class="rounded-lg shadow-xl">
-                </div>
-                <div class="order-1 md:order-2">
-                    <h2 class="text-2xl md:text-3xl font-bold text-slate-800 mb-2">Gamification in Detail (4/4)</h2>
-                    <p class="text-xl text-purple-600 font-semibold mb-6">Cultivating Autonomy</p>
-                    <ul class="text-lg text-slate-600 space-y-4">
-                        <li><strong class="text-slate-700">Freedom of Choice:</strong> Unlike rigid rotas, Chorely allows users to claim chores that fit their own schedules.</li>
-                        <li><strong class="text-slate-700">Increased Buy-In:</strong> This sense of control reframes chores from an obligation to a volitional act.</li>
-                        <li><strong class="text-slate-700">Co-Creation:</strong> The "Suggest a Chore" feature empowers users to actively shape the rules of the game.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 11: Technical Architecture -->
-        <section class="slide items-center justify-center bg-slate-800 text-white">
-            <div class="slide-content">
-                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Technical Architecture</h2>
-                 <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-slate-700 p-6 rounded-lg">
-                        <h3 class="text-2xl font-bold mb-4 text-indigo-300">Frontend</h3>
-                        <ul class="space-y-3">
-                            <li><strong>React & TypeScript:</strong> For a modern, type-safe, and responsive user interface.</li>
-                            <li><strong>shadcn/ui & Tailwind CSS:</strong> For a sleek, customizable, and professional design system.</li>
-                        </ul>
-                    </div>
-                    <div class="bg-slate-700 p-6 rounded-lg">
-                        <h3 class="text-2xl font-bold mb-4 text-indigo-300">Backend</h3>
-                        <ul class="space-y-3">
-                            <li><strong>Supabase:</strong> An open-source platform providing:</li>
-                            <li class="pl-4">&ndash; PostgreSQL Database</li>
-                            <li class="pl-4">&ndash; User Authentication</li>
-                            <li class="pl-4">&ndash; Auto-generated RESTful APIs</li>
-                        </ul>
-                    </div>
-                 </div>
-                 <div class="mt-8 bg-indigo-500 text-indigo-50 p-4 rounded-lg text-center">
-                    <p><strong class="font-semibold">Key Feature:</strong> Real-time database capabilities ensure that all feedback, such as point updates and leaderboard changes, is instantaneous.</p>
-                 </div>
-            </div>
-        </section>
-
-        <!-- Slide 12: Discussion -->
+        <!-- Slide 8: Database Schema -->
         <section class="slide items-center justify-center">
             <div class="slide-content">
-                 <h2 class="text-3xl md:text-4xl font-bold text-slate-800 text-center mb-12">Discussion and Future Scope</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 text-center mb-8">Database Schema</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                    <div class="db-table">
+                        <h3 class="db-title">households</h3>
+                        <p class="db-field">id (PK)</p>
+                        <p class="db-field">name</p>
+                        <p class="db-field">admin_id (FK)</p>
+                        <p class="db-field">invite_code</p>
+                    </div>
+                    <div class="db-table">
+                        <h3 class="db-title">profiles</h3>
+                        <p class="db-field">id (PK)</p>
+                        <p class="db-field">user_id (FK)</p>
+                        <p class="db-field">household_id (FK)</p>
+                        <p class="db-field">username</p>
+                    </div>
+                    <div class="db-table">
+                        <h3 class="db-title">chores</h3>
+                        <p class="db-field">id (PK)</p>
+                        <p class="db-field">household_id (FK)</p>
+                        <p class="db-field">name</p>
+                        <p class="db-field">base_points</p>
+                        <p class="db-field">status</p>
+                    </div>
+                    <div class="db-table">
+                        <h3 class="db-title">evaluations</h3>
+                        <p class="db-field">id (PK)</p>
+                        <p class="db-field">chore_id (FK)</p>
+                        <p class="db-field">evaluator_id (FK)</p>
+                        <p class="db-field">rating</p>
+                    </div>
+                </div>
+                <p class="mt-6 text-center text-slate-600">A relational schema in PostgreSQL ensures data integrity, with Row-Level Security (RLS) policies for privacy.</p>
+            </div>
+        </section>
+
+        <!-- Slide 9: Live Demo -->
+        <section class="slide items-center justify-center bg-slate-50">
+            <div class="text-center slide-content">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-8">Live Demo</h2>
+                <div class="bg-slate-800 rounded-lg p-8 shadow-2xl">
+                    <img src="https://placehold.co/800x450/1e293b/ffffff?text=App+Screenshot+Here" alt="A screenshot of the Chorely application dashboard." class="rounded-md">
+                </div>
+                <p class="mt-8 text-lg text-slate-600">The live application can be accessed at the following URL:</p>
+                <a href="http://chorely.erikovac.com" target="_blank" rel="noopener noreferrer" class="mt-4 inline-block text-xl text-indigo-600 font-semibold hover:underline">chorely.erikovac.com</a>
+            </div>
+        </section>
+
+        <!-- Slide 10: Future Improvements -->
+        <section class="slide items-center justify-center">
+            <div class="slide-content">
+                 <h2 class="text-3xl md:text-4xl font-bold text-slate-800 text-center mb-12">Future Improvements</h2>
                  <div class="grid md:grid-cols-3 gap-8 text-left">
                     <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200">
-                        <h3 class="text-xl font-bold text-slate-700 mb-3">Potential Impact</h3>
-                        <p class="text-slate-600">Aims to reduce household conflict and increase collaboration by making chores transparent and rewarding.</p>
+                        <h3 class="text-xl font-bold text-slate-700 mb-3">Achievement System</h3>
+                        <p class="text-slate-600">Introduce badges and awards for reaching milestones (e.g., "Clean Streak") to provide long-term goals and appeal to Achievers.</p>
                     </div>
                      <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200">
-                        <h3 class="text-xl font-bold text-slate-700 mb-3">Limitations & Ethics</h3>
-                        <p class="text-slate-600">The system must be balanced to avoid negative competition. It is a tool to augment, not replace, direct communication.</p>
+                        <h3 class="text-xl font-bold text-slate-700 mb-3">Cooperative Goals</h3>
+                        <p class="text-slate-600">Implement team-based challenges for the entire household to encourage collaboration over pure competition.</p>
                     </div>
                      <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200">
-                        <h3 class="text-xl font-bold text-slate-700 mb-3">Future Enhancements</h3>
-                        <ul class="text-slate-600 space-y-2 text-sm">
-                            <li>Achievement System (Badges)</li>
-                            <li>Cooperative Team Goals</li>
-                            <li>Shared Financial Tracking</li>
-                        </ul>
+                        <h3 class="text-xl font-bold text-slate-700 mb-3">Financial Integration</h3>
+                        <p class="text-slate-600">Expand the app's scope to include tools for managing shared expenses, such as groceries or utility bills.</p>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- Slide 13: Conclusion -->
+        
+        <!-- Slide 11: Conclusion -->
         <section class="slide items-center justify-center bg-slate-50">
             <div class="slide-content">
                 <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6">Conclusion</h2>
                 <ul class="text-lg text-slate-600 space-y-4">
-                    <li><strong class="text-slate-700">A Successful Proof-of-Concept:</strong> Chorely effectively demonstrates how gamification principles can be applied to solve a common, real-world problem.</li>
-                    <li><strong class="text-slate-700">Psychologically Grounded:</strong> The application's design is rooted in Self-Determination Theory, by satisfying users' needs for **autonomy, competence, and relatedness**.</li>
-                    <li><strong class="text-slate-700">Positive Behavioral Design:</strong> The core gameplay loop creates a powerful motivational structure that fosters accountability, encourages quality work, and promotes a sense of shared responsibility.</li>
-                    <li><strong class="text-slate-700">An Exemplar:</strong> Chorely serves as a strong example of how technology can be thoughtfully engineered to architect more positive and harmonious human interactions.</li>
+                    <li><strong class="text-slate-700">A Successful Proof-of-Concept:</strong> Chorely effectively demonstrates how gamification can solve a common, real-world problem.</li>
+                    <li><strong class="text-slate-700">Psychologically Grounded:</strong> The app's design is rooted in Self-Determination Theory, satisfying user needs for **autonomy, competence, and relatedness**.</li>
+                    <li><strong class="text-slate-700">Positive Behavioral Design:</strong> The core gameplay loop fosters accountability, encourages quality work, and promotes a sense of shared responsibility.</li>
+                    <li><strong class="text-slate-700">An Exemplar:</strong> Chorely serves as a strong example of how technology can be engineered to create more positive human interactions.</li>
                 </ul>
             </div>
         </section>
 
-        <!-- Slide 14: Thank You -->
+        <!-- Slide 12: Thank You -->
         <section class="slide items-center justify-center text-center bg-slate-800 text-white">
             <div class="slide-content">
                 <h2 class="text-5xl md:text-7xl font-extrabold tracking-tight">Thank You</h2>
@@ -328,7 +303,7 @@
         </section>
 
     </main>
-
+    
     <!-- Navigation -->
     <div id="navigation-controls" class="fixed bottom-0 left-0 right-0 p-4 bg-white/50 backdrop-blur-sm border-t border-slate-200">
         <div class="max-w-4xl mx-auto flex justify-between items-center">
@@ -361,22 +336,10 @@
             }
 
             function updateControls() {
-                // Update progress bar
                 const progressPercentage = ((currentSlide + 1) / slides.length) * 100;
                 progressBar.style.width = `${progressPercentage}%`;
-
-                // Update buttons
-                if (currentSlide === 0) {
-                    prevBtn.disabled = true;
-                } else {
-                    prevBtn.disabled = false;
-                }
-
-                if (currentSlide === slides.length - 1) {
-                    nextBtn.disabled = true;
-                } else {
-                    nextBtn.disabled = false;
-                }
+                prevBtn.disabled = currentSlide === 0;
+                nextBtn.disabled = currentSlide === slides.length - 1;
             }
 
             function nextSlide() {
@@ -392,7 +355,7 @@
                     showSlide(currentSlide);
                 }
             }
-
+            
             prevBtn.addEventListener('click', prevSlide);
             nextBtn.addEventListener('click', nextSlide);
 
@@ -404,9 +367,9 @@
                 }
             });
 
-            // Initialize
             showSlide(currentSlide);
         });
     </script>
 </body>
 </html>
+
