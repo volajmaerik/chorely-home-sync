@@ -104,23 +104,17 @@ const Admin = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <header className="bg-gradient-to-r from-background via-muted/30 to-background border-b border-border/50 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center gap-4">
-            <Button variant="ghost" size="sm" onClick={() => navigate('/')} className="text-foreground hover:bg-accent">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Dashboard
-            </Button>
-            <div>
-              <h1 className="text-2xl font-bold text-foreground">Admin Dashboard</h1>
-              <p className="text-sm text-muted-foreground">{household?.name}</p>
-            </div>
-          </div>
+    <div className="space-y-6">
+      <div className="flex items-center gap-4">
+        <Button variant="ghost" size="sm" onClick={() => navigate('/')} className="text-foreground hover:bg-accent">
+          <ArrowLeft className="h-4 w-4 mr-2" />
+          Back to Dashboard
+        </Button>
+        <div>
+          <h1 className="text-2xl font-bold text-foreground">Admin Dashboard</h1>
+          <p className="text-sm text-muted-foreground">{household?.name}</p>
         </div>
-      </header>
-
-      <main className="container mx-auto px-4 py-6">
+      </div>
         <Tabs defaultValue="suggestions" className="space-y-6">
           <TabsList>
             <TabsTrigger value="suggestions">Chore Suggestions</TabsTrigger>
@@ -400,7 +394,6 @@ const Admin = () => {
             </div>
           </TabsContent>
         </Tabs>
-      </main>
     </div>
   );
 };

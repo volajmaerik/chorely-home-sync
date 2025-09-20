@@ -150,7 +150,7 @@ const Auth = () => {
         <ThemeToggle />
       </div>
       
-      <div className="w-full max-w-md">
+      <div className="w-full max-w-md mx-auto">
         <div className="text-center mb-8 space-y-4">
           <div className="mx-auto w-16 h-16 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-lg">
             <Sparkles className="w-8 h-8 text-primary-foreground" />
