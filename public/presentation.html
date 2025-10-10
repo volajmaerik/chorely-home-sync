@@ -31,8 +31,12 @@
             opacity: 1;
         }
         .slide-content {
-            max-width: 1000px;
-            width: 90%;
+            /* Increased max-width to allow wider text on large screens */
+            max-width: 1600px;
+            /* Use a slightly larger relative width while staying responsive */
+            width: 95%;
+            /* center the content horizontally */
+            margin: 0 auto;
         }
         ul {
             list-style-position: outside;
@@ -184,23 +188,23 @@
                  </div>
             </div>
         </section>
-        
+
         <!-- Slide 7: System Architecture -->
         <section class="slide items-center justify-center bg-slate-50">
             <div class="text-center slide-content">
                 <h2 class="text-8xl md:text-9xl font-bold text-slate-800 mb-12">System Architecture</h2>
                 <div class="flex flex-col md:flex-row items-center justify-center gap-8">
-                    <div class="bg-white p-8 rounded-lg shadow-md border-2 border-indigo-200 text-center w-64">
+                    <div class="bg-white p-8 rounded-lg shadow-md border-2 border-indigo-200 text-center w-128">
                         <h3 class="font-bold text-5xl text-indigo-700">Client</h3>
                         <p class="text-4xl text-slate-500">(React SPA)</p>
                     </div>
                     <div class="text-6xl text-slate-400 font-light">&harr;</div>
-                    <div class="bg-white p-8 rounded-lg shadow-md border-2 border-sky-200 text-center w-64">
+                    <div class="bg-white p-8 rounded-lg shadow-md border-2 border-sky-200 text-center w-128">
                         <h3 class="font-bold text-5xl text-sky-700">API</h3>
                         <p class="text-4xl text-slate-500">(Supabase)</p>
                     </div>
                     <div class="text-6xl text-slate-400 font-light">&harr;</div>
-                    <div class="bg-white p-8 rounded-lg shadow-md border-2 border-emerald-200 text-center w-64">
+                    <div class="bg-white p-8 rounded-lg shadow-md border-2 border-emerald-200 text-center w-128">
                         <h3 class="font-bold text-5xl text-emerald-700">Database</h3>
                         <p class="text-4xl text-slate-500">(PostgreSQL)</p>
                     </div>
@@ -280,7 +284,7 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- Slide 11: Conclusion -->
         <section class="slide items-center justify-center bg-slate-50">
             <div class="slide-content">
@@ -303,7 +307,7 @@
         </section>
 
     </main>
-    
+
     <!-- Navigation -->
     <div id="navigation-controls" class="fixed bottom-0 left-0 right-0 p-4 bg-white/50 backdrop-blur-sm border-t border-slate-200">
         <div class="max-w-4xl mx-auto flex justify-between items-center">
@@ -355,7 +359,7 @@
                     showSlide(currentSlide);
                 }
             }
-            
+
             prevBtn.addEventListener('click', prevSlide);
             nextBtn.addEventListener('click', nextSlide);
 
